@@ -46,7 +46,7 @@ async function main() {
     }
     let completeText = '';
     wrTags.forEach((wrTag) => {
-      const text = wrTag['w:t'][0]?.['_'] ?? wrTag['w:t'][0];
+      const text = wrTag['w:t']?.[0]?.['_'] ?? wrTag['w:t']?.[0] ?? '';
       ranges.push([charIndex, charIndex + text.length - 1]);
       charIndex += text.length;
       completeText += text;

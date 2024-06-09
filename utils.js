@@ -1,36 +1,7 @@
-import xml2js from "xml2js";
-import {spawn} from "child_process";
-
-export async function stringToObject(xmlString) {
-  let error;
-  let relation;
-  return new Promise((resolve, reject) => {
-    try {
-      xml2js.parseString(xmlString, (err, rel) => {
-        error = err;
-        relation = rel;
-      });
-    } catch (e) {
-      error = e;
-    } finally {
-      if (error) {
-        reject(new Error(error.toString()));
-      } else {
-        resolve(relation);
-      }
-    }
-  });
-}
-
-export function objectToString(jsObject) {
-  let builder = new xml2js.Builder();
-  return builder.buildObject(jsObject);
-}
-
 export function getTextPieceFromTextRuns(wrs, index) {
   if (wrs[index]['w:t'][0]['_']) {
     return wrs[index]['w:t'][0]['_'];
-  } else if(wrs[index]['w:t'][0]){
+  } else if (wrs[index]['w:t'][0]) {
     return wrs[index]['w:t'][0];
   } else {
     return '';
@@ -40,7 +11,7 @@ export function getTextPieceFromTextRuns(wrs, index) {
 export function updateTextPieceInTextRuns(wrs, index, text) {
   if (wrs[index]['w:t'][0]['_']) {
     wrs[index]['w:t'][0]['_'] = text;
-  } else{
+  } else {
     wrs[index]['w:t'][0] = text;
   }
 }
@@ -112,7 +83,7 @@ export function findAllOccurrences(str, substr) {
  * @param str2
  * @returns {string}
  */
-export function LCSStartsWith2ndStrSubstring(str1,str2) {
+export function LCSStartsWith2ndStrSubstring(str1, str2) {
   let commonSubstring = "";
   for (let i = 0; i < str2.length; i++) {
     let substring = str2.substring(0, i + 1);
@@ -130,7 +101,7 @@ export function LCSStartsWith2ndStrSubstring(str1,str2) {
  * @param str2
  * @returns {string}
  */
-export function LCSEndsWith2ndStrSubstring(str1,str2) {
+export function LCSEndsWith2ndStrSubstring(str1, str2) {
   let commonSubstring = "";
   for (let i = str2.length - 1; i >= 0; i--) {
     let substring = str2.substring(i);
@@ -149,47 +120,4 @@ export function LCSEndsWith2ndStrSubstring(str1,str2) {
  */
 export function getIndexOfSubstringEnd(str, substr) {
   return str.lastIndexOf(substr) + substr.length - 1;
-}
-
-async function executeShellScript(scriptPath, params) {
-  return new Promise((resolve, reject) => {
-    // Spawn a child process to execute the shell script
-    const childProcess = spawn('sh', [scriptPath, ...params]);
-
-    let stdoutData = '';
-    let stderrData = '';
-
-    // Listen for stdout data
-    childProcess.stdout.on('data', (data) => {
-      stdoutData += data;
-    });
-
-    // Listen for stderr data
-    childProcess.stderr.on('data', (data) => {
-      stderrData += data;
-    });
-
-    // Listen for when the child process exits
-    childProcess.on('close', (code) => {
-      if (code === 0) {
-        resolve(stdoutData);
-      } else {
-        reject(new Error(`Child process exited with code ${code}. Stderr: ${stderrData}`));
-      }
-    });
-
-    // Listen for errors in spawning the child process
-    childProcess.on('error', (err) => {
-      reject(err);
-    });
-  });
-}
-
-
-export function unzipOfficeFile(fileName) {
-  spawn('sh', ['./unzip.sh', fileName])
-}
-
-export function zipOfficeFile(fileName) {
-  spawn('sh', ['./zip.sh', fileName])
 }

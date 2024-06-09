@@ -1,7 +1,7 @@
 {
   "name": "edit-office-files",
   "version": "1.0.0",
-  "description": "search &amp; replace text strings in docx, pptx, xlsx files.",
+  "description": "search and replace text strings in docx, pptx, xlsx files.",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -9,8 +9,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@https://github.com/satyajitnayk/edit-office-files.git"
+  },
+  "homepage": "https://github.com/satyajitnayk/edit-office-files#readme",
   "type": "module",
-  "keywords": [],
+  "keywords": [
+    "edit",
+    "edit office files",
+    "aspose",
+    "search and replace office files",
+    "document editing"
+  ],
   "author": "Satyajit Nayak",
   "license": "ISC",
   "dependencies": {

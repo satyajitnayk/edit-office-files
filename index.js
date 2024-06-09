@@ -1,4 +1,4 @@
-import {SearchAndReplace} from './search-and-replace.js';
+import {SearchAndReplace} from './src/search-and-replace.js';
 
 export {
   SearchAndReplace

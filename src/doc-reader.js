@@ -1,4 +1,4 @@
-import fs from 'fs.js';
+import fs from 'fs';
 import JSZip from 'jszip';
 import xml2js from 'xml2js';
 

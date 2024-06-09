@@ -15,8 +15,15 @@ Functionality same as [aspose app](https://products.aspose.app/words/replace/doc
 
 ## Here is what you can achieve:
 
+**step1:**
+```shell
+npm i edit-office-files
+```
+
+**step2:**
 ```js
-import {SearchAndReplace} from './search-and-replace.js';
+
+import {SearchAndReplace} from 'edit-office-files';
 
 async function main() {
   const searchTexts = ['Hello World', 'are You', 'coloured'];
